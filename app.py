@@ -112,15 +112,14 @@ cm_b4 = mbar_90[B4] - mbar_150[B4]
 cm_b4adj = cm_b4 - .04
 
 
-
-
 st.header('What are Hertzsprung-Russell Diagrams?')
 
 st.markdown('''Hertzsprung-Russell diagrams (often shortened to H-R diagrams) are scatter plots comparing the color index or surface
-            temperature of stars to their absolute magnitudes or luminosities. Color index in astronomy refers to a numerical representation
-            of the color of a star calculated by finding the difference between two pass band values of a star. The most common color index
-            is B-V, which is what will be used here. On this scale, a lower number indicates a bluer and hotter star while a higher number
-            indicates a redder and cooler star.''')
+            temperature of stars to their absolute magnitudes or luminosities. The version plotting color index and absolute magnitude is
+            often called a color-magnitude diagram or CMD. Color index in astronomy refers to a numerical representation of the color of
+            a star calculated by finding the difference between two pass band values of a star. The most common color index is B-V, which
+            is what will be used here. On this scale, a lower number indicates a bluer and hotter star while a higher number indicates a
+            redder and cooler star.''')
 
 st.subheader('Now that we know what an H-R diagram is, how are they useful to us?')
 
@@ -129,6 +128,10 @@ st.markdown('''Through plotting stellar populations on H-R diagrams, there are a
             hydrogen in their cores and it is the region of an H-R diagram that most stars occupy. Once a star burns all the hydrogen in its
             core, it turns off the main sequence and becomes a giant. From there it begins to burn Helium, and eventually progresses to a
             white dwarf.''')
+
+st.image('HR_diagram.png')
+
+st.image('evolution.png')
 
 st.markdown('''The location of a star on an H-R diagram depends on factors such as its age, surface temperature, radius, color index, and
             metallicity. As an example, I have plotted the H-R diagram for the globular cluster M92. Below are a few examples of real stars
@@ -146,7 +149,7 @@ if star == 'BAT99-98':
 
     fig2, ax = plt.subplots(figsize = (5,5))
 
-    # plot the JWST H-R diagram
+    # plot the JWST background data
     plt.scatter(cm_a1adj, mbar_90[A1], color='#003f5c', s=.5, alpha=.5)
     plt.scatter(cm_a2adj, mbar_90[A2], color='#58508d', s=.5, alpha=.5)
     plt.scatter(cm_a3adj, mbar_90[A3], color='#8a508f', s=.5, alpha=.5)
@@ -170,7 +173,7 @@ if star == 'BAT99-98':
 elif star == 'AE Andromedae':
     fig3, ax = plt.subplots(figsize = (5,5))
 
-    # plot the JWST H-R diagram
+    # plot the JWST background data
     plt.scatter(cm_a1adj, mbar_90[A1], color='#003f5c', s=.5, alpha=.5)
     plt.scatter(cm_a2adj, mbar_90[A2], color='#58508d', s=.5, alpha=.5)
     plt.scatter(cm_a3adj, mbar_90[A3], color='#8a508f', s=.5, alpha=.5)
@@ -197,7 +200,14 @@ elif star == 'BAT99-98':
     st.pyplot(fig4)
 
 
+st.markdown('''There are two very useful visualizations that fall out of H-R diagrams: the stellar isochrone and evolutionary track.
+            An evolutionary track, as the name might suggest, traces the progression of a star at a single mass and metallicity as it
+            ages. A stellar isochrone, on the other hand, holds the age and metallicity constant and instead varies the mass. As an
+            example, let’s take a look at stellar isochrones.''')
 
+st.markdown('''We will be using the same base of M92 as last time. This base is actually a stellar isochrone of M92. Using the sliders
+            below, you can vary the age (in gigayears) and metallicity to plot different isochrones and see how they compare to M92.
+            Try 11 Gyrs and a metallicity of -2.00 to plot the features of M92!''')
 
 @st.cache_data
 def isoPlot(age, metallicity):
