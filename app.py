@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from astropy.table import Table
-import mistery # added rts49 2024-04-22 2304z
+import mistery
 import streamlit as st
 
 st.title('Hertzsprung–Russell Diagrams and How They Work')
