@@ -266,6 +266,11 @@ st.markdown('''We will be using the same base of M92 as last time. This base is 
 @st.cache_data
 def isoPlot(age, metallicity):
     
+    '''
+    A function that takes in the age and metallicity of a star, fetches luminosity and effective temperature from MIST, then converts
+    those values to B-V color index and absolute magnitude to be plotted on an H-R diagram
+    '''
+
     # query data for desired age and metallicity from MIST
     iso = mistery.get_isochrone(t=age, FeH=metallicity, photometry='JWST')
     
