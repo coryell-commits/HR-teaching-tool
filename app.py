@@ -137,7 +137,8 @@ st.image('evolution.png')
 st.markdown('''The location of a star on an H-R diagram depends on factors such as its age, surface temperature, radius, color index, and
             metallicity. As an example, I have plotted the H-R diagram for the globular cluster M92. Below are a few examples of real stars
             so we can see how they show up on the diagram. You can see that some stars will plot in the very solid main sequence track,
-            while others plot in the more sparsely populated region where giants fall.''')
+            while others plot in the more sparsely populated region where giants fall. Note that these stars aren't part of M92, they just
+            have features that align with the H-R diagram scaled for M92''')
 
 
 star = st.radio("Select a star",
