@@ -143,9 +143,9 @@ st.markdown('''The location of a star on an H-R diagram depends on factors such 
 
 star = st.radio("Select a star",
     ['BAT99-98', "AE Andromedae", "Polaris"],
-    captions = ["45000 K surface temperature, 37.5 Earth radii, -0.1 B-V color index",
-                "20000 K surface temperature, 55 Earth radii, 0.1 B-V color index",
-                "6015 K surface temperature, 37.5 Earth radii, 0.42 B-V color index"])
+    captions = ["45000 K surface temperature, 37.5 Solar radii, -0.1 B-V color index",
+                "20000 K surface temperature, 55 Solar radii, 0.1 B-V color index",
+                "6015 K surface temperature, 37.5 Solar radii, 0.42 B-V color index"])
 
 if star == 'BAT99-98':
 
