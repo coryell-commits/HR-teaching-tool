@@ -268,7 +268,7 @@ def isoPlot(age, metallicity):
     
     '''
     A function that takes in the age and metallicity of a star, fetches luminosity and effective temperature from MIST, then converts
-    those values to B-V color index and absolute magnitude to be plotted on an H-R diagram
+    those values to B-V color index and absolute magnitude to be plotted on an H-R diagram.
     '''
 
     # query data for desired age and metallicity from MIST
@@ -279,7 +279,7 @@ def isoPlot(age, metallicity):
     iso_temp = iso['log_Teff']
     
     # convert surface temperature to B-V color index and luminosity to absolute magnitude
-    # so the MIST isochrone data will align with the JWST data from lab 2
+    # so the MIST isochrone data will align with the JWST data for the background
     BV = -0.72 + (7090/(10**iso_temp))
     Mag = -4.83 - 2.5*iso_lum
     
