@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from astropy.table import Table
 import mistery
 import streamlit as st
+from matplotlib.patches import Circle
 
 st.title('Hertzsprung–Russell Diagrams and How They Work')
 
@@ -140,63 +141,116 @@ st.markdown('''The location of a star on an H-R diagram depends on factors such 
 
 
 star = st.radio("Select a star",
-    ['BAT99-98', "AE Andromedae", "possibly even one more"],
-    captions = ["45000 K surface temperature, 37.5 Earth Radii, -0.1 B-V Color Index",
-                "20000 K surface temperature, 55 Earth Radii, 0.1 B-V Color Index",
-                "blah blah"])
+    ['BAT99-98', "AE Andromedae", "Melnick 42"],
+    captions = ["45000 K surface temperature, 37.5 Earth radii, -0.1 B-V color index",
+                "20000 K surface temperature, 55 Earth radii, 0.1 B-V color index",
+                "47300 K surface temperature, 21.1 Earth radii, 0.08 B-V color index"])
 
 if star == 'BAT99-98':
 
-    fig2, ax = plt.subplots(figsize = (5,5))
+    fig2, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
-    # plot the JWST background data
-    plt.scatter(cm_a1adj, mbar_90[A1], color='#003f5c', s=.5, alpha=.5)
-    plt.scatter(cm_a2adj, mbar_90[A2], color='#58508d', s=.5, alpha=.5)
-    plt.scatter(cm_a3adj, mbar_90[A3], color='#8a508f', s=.5, alpha=.5)
-    plt.scatter(cm_a4adj, mbar_90[A4], color='#bc5090', s=.5, alpha=.5)
+    # Plot the JWST background data
+    ax1.scatter(cm_a1adj, mbar_90[A1], color='#003f5c', s=.5, alpha=.5)
+    ax1.scatter(cm_a2adj, mbar_90[A2], color='#58508d', s=.5, alpha=.5)
+    ax1.scatter(cm_a3adj, mbar_90[A3], color='#8a508f', s=.5, alpha=.5)
+    ax1.scatter(cm_a4adj, mbar_90[A4], color='#bc5090', s=.5, alpha=.5)
 
-    plt.scatter(cm_b1, mbar_90[B1], color='#de5a79', s=.5, alpha=.5)
-    plt.scatter(cm_b2adj, mbar_90[B2], color='#ff6361', s=.5, alpha=.5)
-    plt.scatter(cm_b3adj, mbar_90[B3], color='#ff8531', s=.5, alpha=.5)
-    plt.scatter(cm_b4adj, mbar_90[B4], color='#ffa600', s=.5, alpha=.5)
-    
-    # plot BAT99-98
-    plt.scatter(-0.1, -8.11)
+    ax1.scatter(cm_b1, mbar_90[B1], color='#de5a79', s=.5, alpha=.5)
+    ax1.scatter(cm_b2adj, mbar_90[B2], color='#ff6361', s=.5, alpha=.5)
+    ax1.scatter(cm_b3adj, mbar_90[B3], color='#ff8531', s=.5, alpha=.5)
+    ax1.scatter(cm_b4adj, mbar_90[B4], color='#ffa600', s=.5, alpha=.5)
 
-    plt.xlim(-1,1)
-    plt.xlabel('B-V Color Index')
-    plt.ylim(-15,0)
-    plt.ylabel('Magnitude')
-    plt.gca().invert_yaxis()
+    ax1.scatter(-0.1, -8.11)  # Plot BAT99-98
+    ax1.set_xlim(-1, 1)
+    ax1.set_xlabel('B-V Color Index')
+    ax1.set_ylim(-15, 0)
+    ax1.set_ylabel('Magnitude')
+    ax1.invert_yaxis()
+    ax1.set_title('H-R Diagram')
+
+    ax2.set_aspect('equal')
+    ax2.set_xlim(-60, 60)
+    ax2.set_ylim(-60, 60)
+    circle2 = Circle((0, 0), 37.5, edgecolor='#87b4ff', facecolor='#87b4ff')
+    ax2.add_patch(circle2)
+    ax2.set_xticklabels([])
+    ax2.set_yticklabels([])
+    ax2.set_xticks([])
+    ax2.set_yticks([])
+    ax2.set_title('Star Size and Color')
+
     st.pyplot(fig2)
     
 elif star == 'AE Andromedae':
-    fig3, ax = plt.subplots(figsize = (5,5))
 
-    # plot the JWST background data
-    plt.scatter(cm_a1adj, mbar_90[A1], color='#003f5c', s=.5, alpha=.5)
-    plt.scatter(cm_a2adj, mbar_90[A2], color='#58508d', s=.5, alpha=.5)
-    plt.scatter(cm_a3adj, mbar_90[A3], color='#8a508f', s=.5, alpha=.5)
-    plt.scatter(cm_a4adj, mbar_90[A4], color='#bc5090', s=.5, alpha=.5)
+    fig3, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
-    plt.scatter(cm_b1, mbar_90[B1], color='#de5a79', s=.5, alpha=.5)
-    plt.scatter(cm_b2adj, mbar_90[B2], color='#ff6361', s=.5, alpha=.5)
-    plt.scatter(cm_b3adj, mbar_90[B3], color='#ff8531', s=.5, alpha=.5)
-    plt.scatter(cm_b4adj, mbar_90[B4], color='#ffa600', s=.5, alpha=.5)
+    # Plot the JWST background data
+    ax1.scatter(cm_a1adj, mbar_90[A1], color='#003f5c', s=.5, alpha=.5)
+    ax1.scatter(cm_a2adj, mbar_90[A2], color='#58508d', s=.5, alpha=.5)
+    ax1.scatter(cm_a3adj, mbar_90[A3], color='#8a508f', s=.5, alpha=.5)
+    ax1.scatter(cm_a4adj, mbar_90[A4], color='#bc5090', s=.5, alpha=.5)
 
-    # plot AE Andromedae
-    plt.scatter(0.1, -10.2)
+    ax1.scatter(cm_b1, mbar_90[B1], color='#de5a79', s=.5, alpha=.5)
+    ax1.scatter(cm_b2adj, mbar_90[B2], color='#ff6361', s=.5, alpha=.5)
+    ax1.scatter(cm_b3adj, mbar_90[B3], color='#ff8531', s=.5, alpha=.5)
+    ax1.scatter(cm_b4adj, mbar_90[B4], color='#ffa600', s=.5, alpha=.5)
 
-    plt.xlim(-1,1)
-    plt.xlabel('B-V Color Index')
-    plt.ylim(-15,0)
-    plt.ylabel('Magnitude')
-    plt.gca().invert_yaxis()
+    ax1.scatter(0.1, -10.2)  # Plot AE Andromedae
+    ax1.set_xlim(-1, 1)
+    ax1.set_xlabel('B-V Color Index')
+    ax1.set_ylim(-15, 0)
+    ax1.set_ylabel('Magnitude')
+    ax1.invert_yaxis()
+    ax1.set_title('H-R Diagram')
+
+    ax2.set_aspect('equal')
+    ax2.set_xlim(-60, 60)
+    ax2.set_ylim(-60, 60)
+    circle3 = Circle((0, 0), 55, edgecolor='#bed6ff', facecolor='#bed6ff')
+    ax2.add_patch(circle3)
+    ax2.set_xticklabels([])
+    ax2.set_yticklabels([])
+    ax2.set_xticks([])
+    ax2.set_yticks([])
+    ax2.set_title('Star Size and Color')
+    
     st.pyplot(fig3)
     
-elif star == 'BAT99-98':
-    fig4, ax = plt.subplots(figsize = (5,5))
-    plt.scatter(-0.1, -8,11)
+elif star == 'Melnick 42':
+    fig4, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+
+    # Plot the JWST background data
+    ax1.scatter(cm_a1adj, mbar_90[A1], color='#003f5c', s=.5, alpha=.5)
+    ax1.scatter(cm_a2adj, mbar_90[A2], color='#58508d', s=.5, alpha=.5)
+    ax1.scatter(cm_a3adj, mbar_90[A3], color='#8a508f', s=.5, alpha=.5)
+    ax1.scatter(cm_a4adj, mbar_90[A4], color='#bc5090', s=.5, alpha=.5)
+
+    ax1.scatter(cm_b1, mbar_90[B1], color='#de5a79', s=.5, alpha=.5)
+    ax1.scatter(cm_b2adj, mbar_90[B2], color='#ff6361', s=.5, alpha=.5)
+    ax1.scatter(cm_b3adj, mbar_90[B3], color='#ff8531', s=.5, alpha=.5)
+    ax1.scatter(cm_b4adj, mbar_90[B4], color='#ffa600', s=.5, alpha=.5)
+
+    ax1.scatter(0.08, -7.4)  # Plot Melnick 42
+    ax1.set_xlim(-1, 1)
+    ax1.set_xlabel('B-V Color Index')
+    ax1.set_ylim(-15, 0)
+    ax1.set_ylabel('Magnitude')
+    ax1.invert_yaxis()
+    ax1.set_title('H-R Diagram')
+
+    ax2.set_aspect('equal')
+    ax2.set_xlim(-60, 60)
+    ax2.set_ylim(-60, 60)
+    circle4 = Circle((0, 0), 21.1, edgecolor='#a3c6ff', facecolor='#a3c6ff')
+    ax2.add_patch(circle4)
+    ax2.set_xticklabels([])
+    ax2.set_yticklabels([])
+    ax2.set_xticks([])
+    ax2.set_yticks([])
+    ax2.set_title('Star Size and Color')
+
     st.pyplot(fig4)
 
 
