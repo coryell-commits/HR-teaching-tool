@@ -141,10 +141,10 @@ st.markdown('''The location of a star on an H-R diagram depends on factors such 
 
 
 star = st.radio("Select a star",
-    ['BAT99-98', "AE Andromedae", "Melnick 42"],
+    ['BAT99-98', "AE Andromedae", "Polaris"],
     captions = ["45000 K surface temperature, 37.5 Earth radii, -0.1 B-V color index",
                 "20000 K surface temperature, 55 Earth radii, 0.1 B-V color index",
-                "47300 K surface temperature, 21.1 Earth radii, 0.08 B-V color index"])
+                "6015 K surface temperature, 37.5 Earth radii, 0.42 B-V color index"])
 
 if star == 'BAT99-98':
 
@@ -218,7 +218,7 @@ elif star == 'AE Andromedae':
     
     st.pyplot(fig3)
     
-elif star == 'Melnick 42':
+elif star == 'Polaris':
     fig4, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
     # Plot the JWST background data
@@ -232,7 +232,7 @@ elif star == 'Melnick 42':
     ax1.scatter(cm_b3adj, mbar_90[B3], color='#ff8531', s=.5, alpha=.5)
     ax1.scatter(cm_b4adj, mbar_90[B4], color='#ffa600', s=.5, alpha=.5)
 
-    ax1.scatter(0.08, -7.4)  # Plot Melnick 42
+    ax1.scatter(0.42, -3.6)  # Plot Polaris
     ax1.set_xlim(-1, 1)
     ax1.set_xlabel('B-V Color Index')
     ax1.set_ylim(-15, 0)
@@ -243,7 +243,7 @@ elif star == 'Melnick 42':
     ax2.set_aspect('equal')
     ax2.set_xlim(-60, 60)
     ax2.set_ylim(-60, 60)
-    circle4 = Circle((0, 0), 21.1, edgecolor='#a3c6ff', facecolor='#a3c6ff')
+    circle4 = Circle((0, 0), 21.1, edgecolor='#fdffad', facecolor='#fdffad')
     ax2.add_patch(circle4)
     ax2.set_xticklabels([])
     ax2.set_yticklabels([])
