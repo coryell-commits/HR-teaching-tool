@@ -239,7 +239,7 @@ elif star == 'Polaris':
     ax1.scatter(cm_b3adj, mbar_90[B3], color='#ff8531', s=.5, alpha=.5)
     ax1.scatter(cm_b4adj, mbar_90[B4], color='#ffa600', s=.5, alpha=.5)
 
-    ax1.scatter(0, -10.5)  # Plot Polaris, adj for M92 scale
+    ax1.scatter(0, -10.5)  # Plot Polaris, adj for M92 scale 
     ax1.set_xlim(-1, 1)
     ax1.set_xlabel('B-V Color Index')
     ax1.set_ylim(-15, 0)
