@@ -142,12 +142,12 @@ st.markdown('''The location of a star on an H-R diagram depends on factors such 
 
 
 star = st.radio("Select a star",
-    ['BAT99-98', "AE Andromedae", "Polaris"],
-    captions = ["45000 K surface temperature, 37.5 Solar radii, -0.1 B-V color index",
-                "20000 K surface temperature, 55 Solar radii, 0.1 B-V color index",
-                "6015 K surface temperature, 37.5 Solar radii, 0.42 B-V color index"])
+    ['Sun', "Beta Centauri", "Polaris"],
+    captions = ["5772 K surface temperature, 4.83 absolute magnitude, 1 Solar radius (696,300 km), 0.66 B-V color index",
+                "23000 K surface temperature, −4.9 absolute magnitude, 9 Solar radii, -0.23 B-V color index",
+                "6015 K surface temperature, −3.6 absolute magnitude, 37.5 Solar radii, 0.42 B-V color index"])
 
-if star == 'BAT99-98':
+if star == 'Sun':
 
     fig2, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
@@ -162,18 +162,21 @@ if star == 'BAT99-98':
     ax1.scatter(cm_b3adj, mbar_90[B3], color='#ff8531', s=.5, alpha=.5)
     ax1.scatter(cm_b4adj, mbar_90[B4], color='#ffa600', s=.5, alpha=.5)
 
-    ax1.scatter(-0.1, -8.11)  # Plot BAT99-98
+    ax1.scatter(0, -8)  # Plot Sun, adj for M92 scale
     ax1.set_xlim(-1, 1)
     ax1.set_xlabel('B-V Color Index')
     ax1.set_ylim(-15, 0)
     ax1.set_ylabel('Magnitude')
     ax1.invert_yaxis()
+    ax1.set_yticklabels([])
+    ax1.set_xticklabels([])
     ax1.set_title('H-R Diagram')
 
+    # size and color plot
     ax2.set_aspect('equal')
-    ax2.set_xlim(-60, 60)
-    ax2.set_ylim(-60, 60)
-    circle2 = Circle((0, 0), 37.5, edgecolor='#87b4ff', facecolor='#87b4ff')
+    ax2.set_xlim(-40, 40)
+    ax2.set_ylim(-40, 40)
+    circle2 = Circle((0, 0), 1, edgecolor='#fdffad', facecolor='#fdffad')
     ax2.add_patch(circle2)
     ax2.set_xticklabels([])
     ax2.set_yticklabels([])
@@ -183,7 +186,7 @@ if star == 'BAT99-98':
 
     st.pyplot(fig2)
     
-elif star == 'AE Andromedae':
+elif star == 'Beta Centauri':
 
     fig3, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
@@ -198,18 +201,21 @@ elif star == 'AE Andromedae':
     ax1.scatter(cm_b3adj, mbar_90[B3], color='#ff8531', s=.5, alpha=.5)
     ax1.scatter(cm_b4adj, mbar_90[B4], color='#ffa600', s=.5, alpha=.5)
 
-    ax1.scatter(0.1, -10.2)  # Plot AE Andromedae
+    ax1.scatter(-0.75, -11)  # Plot Beta Centauri, adj for M92 scale
     ax1.set_xlim(-1, 1)
     ax1.set_xlabel('B-V Color Index')
     ax1.set_ylim(-15, 0)
     ax1.set_ylabel('Magnitude')
     ax1.invert_yaxis()
+    ax1.set_yticklabels([])
+    ax1.set_xticklabels([])
     ax1.set_title('H-R Diagram')
 
+    # size and color plot
     ax2.set_aspect('equal')
-    ax2.set_xlim(-60, 60)
-    ax2.set_ylim(-60, 60)
-    circle3 = Circle((0, 0), 55, edgecolor='#bed6ff', facecolor='#bed6ff')
+    ax2.set_xlim(-40, 40)
+    ax2.set_ylim(-40, 40)
+    circle3 = Circle((0, 0), 9, edgecolor='#71a4ff', facecolor='#71a4ff')
     ax2.add_patch(circle3)
     ax2.set_xticklabels([])
     ax2.set_yticklabels([])
@@ -233,18 +239,20 @@ elif star == 'Polaris':
     ax1.scatter(cm_b3adj, mbar_90[B3], color='#ff8531', s=.5, alpha=.5)
     ax1.scatter(cm_b4adj, mbar_90[B4], color='#ffa600', s=.5, alpha=.5)
 
-    ax1.scatter(0.42, -3.6)  # Plot Polaris
+    ax1.scatter(0, -10.5)  # Plot Polaris, adj for M92 scale
     ax1.set_xlim(-1, 1)
     ax1.set_xlabel('B-V Color Index')
     ax1.set_ylim(-15, 0)
     ax1.set_ylabel('Magnitude')
     ax1.invert_yaxis()
+    ax1.set_yticklabels([])
     ax1.set_title('H-R Diagram')
 
+    # size and color plot
     ax2.set_aspect('equal')
-    ax2.set_xlim(-60, 60)
-    ax2.set_ylim(-60, 60)
-    circle4 = Circle((0, 0), 21.1, edgecolor='#fdffad', facecolor='#fdffad')
+    ax2.set_xlim(-40, 40)
+    ax2.set_ylim(-40, 40)
+    circle4 = Circle((0, 0), 37.5, edgecolor='#fdffad', facecolor='#fdffad')
     ax2.add_patch(circle4)
     ax2.set_xticklabels([])
     ax2.set_yticklabels([])
